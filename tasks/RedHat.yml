@@ -1,0 +1,13 @@
+
+- name: Install docker os packages
+  yum: pkg=docker-io state=present
+
+- name: start the docker service
+  service: name=docker state=started enabled=yes
+
+- name: Install docker python packages
+  yum: pkg=python-docker-py state=present
+
+- name: Docker init file
+  template: src=docker-redhat.j2 dest=/etc/sysconfig/docker
+  notify: Restart Docker
