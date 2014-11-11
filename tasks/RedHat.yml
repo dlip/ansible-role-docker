@@ -1,6 +1,6 @@
 
 - name: Install docker os packages
-  yum: pkg=docker-io state=present
+  yum: pkg=docker-io-{{docker_version}} state=present
 
 - name: start the docker service
   service: name=docker state=started enabled=yes
@@ -11,3 +11,13 @@
 - name: Docker init file
   template: src=docker-redhat.j2 dest=/etc/sysconfig/docker
   notify: Restart Docker
+
+- name: Get Docker version
+  shell: docker --version
+  register: cmd_version
+
+- name: Check Docker version
+  assert:
+    that:
+      - "'{{docker_version}}' in cmd_version.stdout"
+
