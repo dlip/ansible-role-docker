@@ -1,0 +1,4 @@
+- name: Docker init file
+  template: src=docker-redhat.j2 dest=/etc/sysconfig/docker
+  notify: Restart Docker
+

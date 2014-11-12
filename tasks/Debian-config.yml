@@ -1,0 +1,7 @@
+- name: Docker default config file
+  template: src=docker-defaults.j2 dest=/etc/default/docker
+
+- name: Docker init file
+  template: src=docker-init.j2 dest=/etc/init/docker.conf
+  notify: Restart Docker
+

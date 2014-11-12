@@ -15,13 +15,6 @@
     - linux-image-extra-{{os_uname.stdout}}
     - lxc-docker
 
-- name: Docker default config file
-  template: src=docker-defaults.j2 dest=/etc/default/docker
-
-- name: Docker init file
-  template: src=docker-init.j2 dest=/etc/init/docker.conf
-  notify: Restart Docker
-
 # consider seperate role here
 - name: Change ufw forward policy to ACCEPT
   command: sed -i 's/DEFAULT_FORWARD_POLICY="DROP"/DEFAULT_FORWARD_POLICY="ACCEPT"/g' /etc/default/ufw

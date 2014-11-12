@@ -1,6 +1,16 @@
 ---
-- include: Debian.yml
+- include: Debian-install.yml
   when: ansible_os_family == "Debian"
+  tags: install
 
-- include: RedHat.yml
+- include: Debian-config.yml
+  when: ansible_os_family == "Debian"
+  tags: config
+
+- include: RedHat-install.yml
   when: ansible_os_family == 'RedHat'
+  tags: install
+
+- include: RedHat-config.yml
+  when: ansible_os_family == 'RedHat'
+  tags: config
