@@ -2,9 +2,6 @@
 - name: Install docker os packages
   yum: pkg=docker-io-{{docker_version}} state=present
 
-- name: start the docker service
-  service: name=docker state=started enabled=yes
-
 - name: Install docker python packages
   yum: pkg=python-docker-py state=present
 
@@ -15,6 +12,7 @@
 - name: Get Docker version
   shell: docker --version
   register: cmd_version
+  changed_when: False
 
 - name: Check Docker version
   assert:
