@@ -104,7 +104,6 @@ galaxy_info:
   #- web
   - platform
 dependencies: 
-  - dlip.libselinux-python
   - dlip.epel
   # List your role dependencies here, one per line. Only
   # dependencies available via galaxy should be listed here.
