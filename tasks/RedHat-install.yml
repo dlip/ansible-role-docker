@@ -2,8 +2,12 @@
 - name: Install docker os packages
   yum: pkg=docker-io-{{docker_version}} state=present
 
-- name: Install docker python packages
-  yum: pkg=python-docker-py state=present
+- name: Install pip
+  yum: pkg=python-pip state=present
+
+# Forcing this to 1.1.0 as latest version has incompatibilities. See https://github.com/ansible/ansible/issues/10879
+- name: Install docker-py
+  pip: name=docker-py version=1.1.0
 
 - name: Docker init file
   template: src=docker-redhat.j2 dest=/etc/sysconfig/docker
